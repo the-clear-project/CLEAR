@@ -1,0 +1,55 @@
+// Project info
+group = "org.theclearproject"
+version = "0.1"
+description = "Configuration Lookup in Every Runtime Environment"
+
+apply plugin: "java"
+apply plugin: "idea"
+apply plugin: "init"
+apply plugin: "release"
+
+// Build script config
+buildscript {
+  repositories {
+    ivy {
+      name "inversoftPublic"
+      ivyPattern "http://hawking.inversoft.com/repository/public/[organisation]/[module]/[revision]/ivy.xml"
+      artifactPattern "http://hawking.inversoft.com/repository/public/[organisation]/[module]/[revision]/[type]s/[artifact]-[revision].[ext]"
+    }
+    ivy {
+      url "${project.gradle.gradleUserHomeDir}/integration-cache"
+    }
+  }
+  dependencies {
+    classpath "org.primeframework.gradle:gradle-init-plugin:0.3",
+      "org.primeframework.gradle:gradle-release-plugin:0.6"
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile(
+    "com.google.inject:guice:3.0",
+    "log4j:log4j:1.2.16",
+    "org.hibernate:hibernate-validator:4.2.0.Final",
+    "javax.validation:validation-api:1.0.0.GA"
+  )
+  testCompile(
+    "org.easymock:easymock:3.1",
+    "org.testng:testng:6.4",
+    "org.slf4j:slf4j-log4j12:1.6.4",
+    "org.slf4j:slf4j-api:1.6.4",
+    "javax.validation:validation-api:1.0.0.GA"
+  )
+}
+
+// Java config
+sourceCompatibility = 1.6
+
+// use testng
+test {
+  useTestNG()
+}
