@@ -27,8 +27,6 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.theclearproject.clear.lookup.LookUpKey;
 import org.theclearproject.clear.lookup.LookUpKeyResolver;
 
@@ -37,14 +35,12 @@ import com.google.inject.Inject;
 /**
  * @author jhumphrey
  */
-@Service
 public class PropertyServiceImpl implements PropertyService {
 
   private static final Logger logger = Logger.getLogger(PropertyServiceImpl.class);
 
   private LookUpKeyResolver lookUpKeyResolver;
 
-  @Autowired
   @Inject
   public PropertyServiceImpl(LookUpKeyResolver lookUpKeyResolver) {
     this.lookUpKeyResolver = lookUpKeyResolver;

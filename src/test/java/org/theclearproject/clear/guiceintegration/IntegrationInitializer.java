@@ -16,6 +16,9 @@
 
 package org.theclearproject.clear.guiceintegration;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
@@ -28,9 +31,14 @@ import org.theclearproject.clear.init.AbstractInitializer;
 public class IntegrationInitializer extends AbstractInitializer {
   @Override
   public void initClear() {
-    ResourceBundle bundle1 = PropertyResourceBundle.getBundle("clearIntegrationTest-1");
-    ResourceBundle bundle2 = PropertyResourceBundle.getBundle("clearIntegrationTest-2");
+    try {
+      ResourceBundle bundle1 = PropertyResourceBundle.getBundle("clearIntegrationTest-1");
+      ResourceBundle bundle2 = PropertyResourceBundle.getBundle("clearIntegrationTest-2");
+      ResourceBundle bundle3 = new PropertyResourceBundle(new FileInputStream(new File("src/test/resources/clearIntegrationTest-3.properties")));
 
-    withResourceBundle(bundle1, bundle2).addLookUp("lookUp1").addLookUp("lookUp2");
+      withResourceBundle(bundle1, bundle2, bundle3).addLookUp("lookUp1").addLookUp("lookUp2").addLookUp("lookUp3");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }

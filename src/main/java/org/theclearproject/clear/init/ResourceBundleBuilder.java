@@ -17,6 +17,7 @@
 package org.theclearproject.clear.init;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 import org.theclearproject.clear.ClearContext;
@@ -30,10 +31,8 @@ public class ResourceBundleBuilder extends LookUpBuilder {
     super(clearContext);
 
     if (resourceBundles != null) {
-      clearContext.setResourceBundles(new ArrayList<ResourceBundle>());
-      for (ResourceBundle resourceBundle : resourceBundles) {
-        clearContext.getResourceBundles().add(resourceBundle);
-      }
+      clearContext.resourceBundles = new ArrayList<ResourceBundle>();
+      Collections.addAll(clearContext.resourceBundles, resourceBundles);
     }
   }
 }

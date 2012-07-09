@@ -48,6 +48,7 @@ public class ClearIntegrationTest {
   @BeforeClass
   public void initGuice() {
     injector.injectMembers(this);
+    System.out.println();
   }
 
   @Test
@@ -55,28 +56,33 @@ public class ClearIntegrationTest {
     Map<String, ClearProperty> properties = clear.getProperties();
 
     /*
-     Verify Properties.  Initializer only loaded lookUp1 and lookUp2
-     so only those properties should be within the property map
+      Verify Properties.  Initializer loaded lookUp1, lookUp2, and lookUp3
+      so only those properties should be within the property map
 
-     Defined in clearIntegrationTest-1.properties:
-       (default)stux=stix
-       (default)flix=flux
-       (default)glix=glux
-       (lookUp1)foo=bark
-       (lookUp1)blas=1
-       (lookUp1)gorp=true
-       (lookUp2)baz=bizz
-       (lookUp2)frank=2.34
-       (lookUp2)fred=1234123512342323341
-       (lookUp3)waldo=qixx
+      Defined in clearIntegrationTest-1.properties.  These properties take priority because this file was loaded first
+        (default)stux=stix
+        (default)flix=flux
+        (default)glix=glux
+        (lookUp1)foo=bark
+        (lookUp1)blas=1
+        (lookUp1)gorp=true
+        (lookUp2)baz=bizz
+        (lookUp2)frank=2.34
+        (lookUp2)fred=1234123512342323341
+        (lookUp3)waldo=qixx
 
-     Defined in clearIntegrationTest-2.properties
-       (default)foo=bar
-       (default)baz=biz
-       (default)waldo=qix
+      Defined in clearIntegrationTest-2.properties.  Next set of priorities
+        (default)foo=bar
+        (default)baz=biz
+        (default)waldo=qix
+
+      Defined in clearIntegrationTest-2.properties.  Last priority
+        (lookUp1)blas=5
+        (lookUp1)dred=ded
+        (lookUp3)grub=nub
      */
 
-    Assert.assertEquals(properties.size(), 6);
+    Assert.assertEquals(properties.size(), 9);
   }
 
   /**
@@ -89,7 +95,7 @@ public class ClearIntegrationTest {
     String waldo = clear.getString("waldo", "hux"); // this one is not defined, but it should return the default
     Assert.assertEquals(foo, "bark");
     Assert.assertEquals(baz, "bizz");
-    Assert.assertEquals(waldo, "hux");
+    Assert.assertEquals(waldo, "qixx");
   }
 
   /**

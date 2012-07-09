@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 www.theclearproject.org
+ * Copyright (c) 2012 www.theclearproject.org
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,21 +17,24 @@
 package org.theclearproject.clear;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Contains context for initializing CLEAR
  *
  * @author jhumphrey
  */
-public class ClearContext {
+public class ClearResource {
 
-  @NotEmpty(message = "{clearContext.resourceBundles.empty}")
-  public List<ResourceBundle> resourceBundles;
+  @NotNull(message = "{clearContext.resourceBundle.null}")
+  public ResourceBundle resourceBundle;
 
   @NotNull(message = "{clearContext.lookUps.null}")
-  public List<String> lookUps;
+  public List<String> lookUps = new ArrayList<String>();
+
+  public ClearResource(ResourceBundle resourceBundle) {
+    this.resourceBundle = resourceBundle;
+  }
 }

@@ -16,17 +16,15 @@
 
 package org.theclearproject.clear;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.theclearproject.clear.init.Initializer;
 import org.theclearproject.clear.property.ClearProperty;
 import org.theclearproject.clear.property.PropertyService;
@@ -38,7 +36,6 @@ import com.google.inject.Inject;
  *
  * @author jhumphrey
  */
-@Component
 public class Clear implements Configuration {
 
   private static final Logger logger = Logger.getLogger(Clear.class);
@@ -50,7 +47,6 @@ public class Clear implements Configuration {
   private Map<String, ClearProperty> properties;
 
   @Inject
-  @Autowired
   public Clear(Initializer initializer, Validator validator, PropertyService propertyService) {
     this.initializer = initializer;
     this.validator = validator;
@@ -66,18 +62,18 @@ public class Clear implements Configuration {
     validate(context);
 
     // stores all clear properties in all bundles
-    Collection<ClearProperty> allProps = propertyService.load(context.getResourceBundles());
+    Collection<ClearProperty> allProps = propertyService.load(context.resourceBundles);
 
     // stores all filtered properties.  A filtered property is one that
     // contains a lookup key matching lookUps added during the initialization step
-    Collection<ClearProperty> filteredProps = propertyService.filter(allProps, context.getLookUps());
+    Collection<ClearProperty> filteredProps = propertyService.filter(allProps, context.lookUps);
 
     properties = new LinkedHashMap<String, ClearProperty>();
     for (ClearProperty filteredProp : filteredProps) {
       properties.put(filteredProp.getKey(), filteredProp);
     }
 
-    printLookUps(context.getLookUps());
+    printLookUps(context.lookUps);
     printProperties();
   }
 

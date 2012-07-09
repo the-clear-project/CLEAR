@@ -41,10 +41,10 @@ public class AbstractInitializerTest {
     ClearContext context = initializer.getClearContext();
 
     Assert.assertNotNull(context);
-    Assert.assertNotNull(context.getResourceBundles());
-    Assert.assertEquals(context.getResourceBundles().size(), 1);
-    Assert.assertNotNull(context.getLookUps());
-    Assert.assertEquals(context.getLookUps().size(), 0);
+    Assert.assertNotNull(context.resourceBundles);
+    Assert.assertEquals(context.resourceBundles.size(), 1);
+    Assert.assertNotNull(context.lookUps);
+    Assert.assertEquals(context.lookUps.size(), 0);
   }
 
   @Test
@@ -60,12 +60,12 @@ public class AbstractInitializerTest {
     ClearContext context = initializer.getClearContext();
 
     Assert.assertNotNull(context);
-    Assert.assertNotNull(context.getResourceBundles());
-    Assert.assertEquals(context.getResourceBundles().size(), 1);
-    Assert.assertNotNull(context.getLookUps());
-    Assert.assertEquals(context.getLookUps().size(), 2);
-    Assert.assertTrue(context.getLookUps().contains("lookUp1"));
-    Assert.assertTrue(context.getLookUps().contains("lookUp2"));
+    Assert.assertNotNull(context.resourceBundles);
+    Assert.assertEquals(context.resourceBundles.size(), 1);
+    Assert.assertNotNull(context.lookUps);
+    Assert.assertEquals(context.lookUps.size(), 2);
+    Assert.assertTrue(context.lookUps.contains("lookUp1"));
+    Assert.assertTrue(context.lookUps.contains("lookUp2"));
   }
 
   @Test
@@ -82,7 +82,7 @@ public class AbstractInitializerTest {
     ClearContext context = initializer.getClearContext();
 
     Assert.assertNotNull(context);
-    Assert.assertNotNull(context.getResourceBundles());
-    Assert.assertEquals(context.getResourceBundles().size(), 2);
+    Assert.assertNotNull(context.resourceBundles);
+    Assert.assertEquals(context.resourceBundles.size(), 2);
   }
 }

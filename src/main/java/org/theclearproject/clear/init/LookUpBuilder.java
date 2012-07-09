@@ -32,16 +32,16 @@ public class LookUpBuilder {
   }
 
   public LookUpBuilder addLookUp(String lookUp) {
-    if (clearContext.getLookUps() == null) {
-      clearContext.setLookUps(new ArrayList<String>());
+    if (clearContext.lookUps == null) {
+      clearContext.lookUps =  new ArrayList<String>();
     }
 
-    clearContext.getLookUps().add(lookUp);
+    clearContext.lookUps.add(lookUp);
 
     return this;
   }
 
   public void withoutLookUps() {
-    clearContext.setLookUps(new ArrayList<String>());
+    clearContext.lookUps = new ArrayList<String>();
   }
 }

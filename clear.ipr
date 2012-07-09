@@ -39,6 +39,10 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
+  <component name="GradleSettings">
+    <option name="gradleHome" value="$GRADLE_HOME$" />
+    <option name="linkedProjectPath" value="$PROJECT_DIR$/build.gradle" />
+  </component>
   <component name="IdProvider" IDEtalkID="5FE567162A1D03EDECE58D88AFD8D547" />
   <component name="InspectionProjectProfileManager">
     <profiles>
@@ -229,7 +233,7 @@
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="VcsDirectoryMappings">
-    <mapping directory="" vcs="" />
+    <mapping directory="" vcs="Git" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
   <component name="libraryTable">
